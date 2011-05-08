@@ -126,3 +126,34 @@ $tagWidth: 400px;
   color: #006699;
   text-decoration: none;
 }
+
+#hello {
+  @include border-radius(15px);
+  @include single-box-shadow;
+  background-color: #B31C01;
+  width: 400px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 15px 0;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+  
+  h2 {
+    color: #FFF; 
+    font-size: 60px;
+    font-weight: bold;
+  }  
+  
+  #my-name-is {
+    color: #FFF;
+    font-size: 22px;
+    padding-bottom: 10px;
+  }
+  
+  #hello-contents {
+    background-color: #FFF;
+    height: 90px;
+    padding-top: 10px;
+    font-family: 'Covered By Your Grace', serif;
+    font-size: 72px;
+  }
+}
