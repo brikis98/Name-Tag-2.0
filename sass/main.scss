@@ -198,3 +198,50 @@ $tagWidth: 400px;
   }
   
 }
+
+#customize {
+  width: 800px;
+  margin: 0 auto;
+  @include clearfix;
+  
+  #options {
+    @include float-left;
+    margin-top: 50px;
+    font-family: Arial, "MS Trebuchet", sans-serif;
+    
+    h2 {
+      font-size: 20px;
+      color: #444;
+      font-weight: bold;
+      margin: 10px 0 20px 0;
+    }
+    
+    .option-label {
+      width: 110px;
+      font-size: 14px;
+      display: inline-block;
+    }
+    
+    .option {
+      margin: 10px 0;
+    }
+    
+    input[type=text] {
+      width: 220px;
+    }
+    
+    #full {
+      margin-left: 10px;
+    }
+    
+    #size {
+      font-size: 14px;
+    }
+  }
+  
+  #badge {
+    @include float-right;
+  }  
+}
+
+

@@ -1,3 +1,5 @@
+var currentProfile = null;
+
 function onLinkedInAuth() {
   IN.API
     .Profile('me')
@@ -27,8 +29,8 @@ function createDustBase() {
   });  
 }
 
-function showLogout(profile) {
-  dust.render('logout', profile, function(err, out) {
+function showLogout() {
+  dust.render('logout', currentProfile, function(err, out) {
     $('#logout-container').html(err ? err : out);
   });
 }
@@ -37,22 +39,38 @@ function hideLogout() {
   $('#logout-container').empty();
 }
 
-function showCard(profile) {
-  var attrs = {eventLogo: 'images/logo.png', eventName: 'Google I/O 2011', extended: true};
-  var context = _.extend(profile, attrs);  
-  dust.render('badge', createDustBase().push(context), function(err, out) {
-    $('#badge').html(err ? err : out);
+function showCustomize() {
+  var attrs = {
+    eventLogo: 'http://' + window.location.host + '/images/logo.png', 
+    eventName: 'LinkedIn Talent Connect 2011', 
+    extended: false
+  };
+  var context = _.extend(currentProfile, attrs);  
+  dust.render('customize', createDustBase().push(context), function(err, out) {
+    $('#customize').html(err ? err : out);
   });  
 }
 
-function hideCard() {
-  $('#badge').empty();
+function updateBadge() {
+  var attrs = {
+    eventLogo: $('#event-logo').val(),
+    eventName: $('#event-name').val(),
+    extended: $('#full').is(':checked') 
+  };
+  var context = _.extend(currentProfile, attrs);  
+  dust.render('badge', createDustBase().push(context), function(err, out) {
+    $('#badge').html(err ? err : out);
+  });    
+}
+
+function hideCustomize() {
+  $('#customize').empty();
 }
 
 function gotProfile(profiles) {
-  var profile = profiles.values[0];
-  showLogout(profile);
-  showCard(profile);
+  currentProfile = profiles.values[0];
+  showLogout();
+  showCustomize();
   hideLanding();
 }
 
@@ -69,7 +87,12 @@ $(function() {
     event.preventDefault();
     IN.User.logout();
     hideLogout();
-    hideCard();
+    hideCustomize();
     showLanding();
+    currentProfile = null;
+  });
+  
+  $('#event-name, #event-logo, #full, #mini').live('change', function(event) {
+    updateBadge();
   });
 });

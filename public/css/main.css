@@ -291,3 +291,52 @@ footer, header, hgroup, menu, nav, section {
   font-size: 14px;
   padding-left: 5px;
 }
+
+/* line 202, ../../sass/main.scss */
+#customize {
+  width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 207, ../../sass/main.scss */
+#customize #options {
+  display: inline;
+  float: left;
+  margin-top: 50px;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+}
+/* line 212, ../../sass/main.scss */
+#customize #options h2 {
+  font-size: 20px;
+  color: #444;
+  font-weight: bold;
+  margin: 10px 0 20px 0;
+}
+/* line 219, ../../sass/main.scss */
+#customize #options .option-label {
+  width: 110px;
+  font-size: 14px;
+  display: inline-block;
+}
+/* line 225, ../../sass/main.scss */
+#customize #options .option {
+  margin: 10px 0;
+}
+/* line 229, ../../sass/main.scss */
+#customize #options input[type=text] {
+  width: 220px;
+}
+/* line 233, ../../sass/main.scss */
+#customize #options #full {
+  margin-left: 10px;
+}
+/* line 237, ../../sass/main.scss */
+#customize #options #size {
+  font-size: 14px;
+}
+/* line 242, ../../sass/main.scss */
+#customize #badge {
+  display: inline;
+  float: right;
+}
