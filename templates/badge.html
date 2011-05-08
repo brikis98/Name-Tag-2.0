@@ -32,7 +32,11 @@
               <h2>Education</h2>
               <ul>
                 {#loop:educations.values end="2"}
-                  <li>{.degree} <span class="at">from</span> {.schoolName}</li>
+                  <li>
+                    {.degree}{?.degree}<span class="at">,</span>{/.degree} 
+                    {.fieldOfStudy}{?.fieldOfStudy}<span class="at">,</span>{/.fieldOfStudy} 
+                    {.schoolName}
+                  </li>
                 {/loop}
               </ul>
             </div>
