@@ -11,6 +11,14 @@ function createDustBase() {
       var list = context.current();
       var start = params.start || 0;
       var end = params.end || list.length;
+      
+      if (start < 0) {
+        start = 0;
+      }
+      if (end > list.length) {
+        end = list.length;
+      }
+      
       for (var i = start; i < end; i++) {
         chunk.render(bodies.block, context.rebase(list[i]));
       }
