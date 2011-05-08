@@ -1,0 +1,116 @@
+@import "compass/reset";
+@import "compass/utilities";
+@import "compass/css3";
+
+$borderColor: #EDEDED;
+$borderRadius: 5px;
+$cardPadding: 10px;
+$normalFontColor: #666;
+$tagWidth: 400px;
+
+#name-tag {
+  margin: 50px auto;
+  width: $tagWidth;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+  @include border-radius($borderRadius); 
+  border: 1px solid $borderColor; 
+  padding: 1px;
+}
+
+#contents {
+  background-color: $borderColor;
+  @include border-radius($borderRadius);
+  padding: 5px;
+}
+
+#card {
+  background-color: #FFF;
+  border: 1px solid #CCC;
+  padding: $cardPadding;
+  @include clearfix;
+  
+  .at {
+    font-size: 90%;
+    font-weight: normal;
+  }
+  
+  #header {
+    @include clearfix;
+  }
+  
+  #name-headline {
+    @include float-left;
+    width: $tagWidth - 120px;
+  }
+  
+  #name {
+    color: #006699;
+    font-size: 28px;
+    font-weight: bold;
+    font-family:  'Century Gothic', 'Helvetica', Arial, sans-serif;
+  }  
+  
+  #headline {
+    color: $normalFontColor;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 8px 0;
+  }
+  
+  #location {
+    color: $normalFontColor;
+    font-size: 12px;  
+  }
+  
+  #profile-photo {
+    @include float-right;
+  }
+  
+  #body {  
+    padding: 8px 0;
+  
+    .section {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dotted #CCC;
+    }
+    
+    h2 {
+      color: $normalFontColor; 
+      font-weight: bold; 
+      font-size: 12px;
+    }
+    
+    ul {
+      padding-top: 5px;
+    }
+    
+    li {
+      font-size: 11px; 
+      color: $normalFontColor; 
+      margin-left: 20px;
+      line-height: 18px; 
+    }
+    
+    #status {
+      height: 50px;
+    }
+  }
+}
+
+#event {
+  @include clearfix;
+  padding: $cardPadding;
+  padding-bottom: 5px;
+  
+  #event-name {
+    @include float-right;
+    line-height: image-height('logo.png');
+    font-size: 12px; 
+    color: $normalFontColor;
+  }
+  
+  #event-logo {
+    @include float-left;
+  }  
+}

@@ -1,0 +1,193 @@
+/* line 17, /Users/jbrikman/.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* line 20, /Users/jbrikman/.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+body {
+  line-height: 1;
+}
+
+/* line 22, /Users/jbrikman/.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 24, /Users/jbrikman/.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 26, /Users/jbrikman/.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 28, /Users/jbrikman/.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 101, /Users/jbrikman/.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 30, /Users/jbrikman/.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 115, /Users/jbrikman/.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 11, ../sass/main.scss */
+#name-tag {
+  margin: 50px auto;
+  width: 400px;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #ededed;
+  padding: 1px;
+}
+
+/* line 20, ../sass/main.scss */
+#contents {
+  background-color: #ededed;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* line 26, ../sass/main.scss */
+#card {
+  background-color: #FFF;
+  border: 1px solid #CCC;
+  padding: 10px;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 32, ../sass/main.scss */
+#card .at {
+  font-size: 90%;
+  font-weight: normal;
+}
+/* line 37, ../sass/main.scss */
+#card #header {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 41, ../sass/main.scss */
+#card #name-headline {
+  display: inline;
+  float: left;
+  width: 280px;
+}
+/* line 46, ../sass/main.scss */
+#card #name {
+  color: #006699;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: 'Century Gothic', 'Helvetica', Arial, sans-serif;
+}
+/* line 53, ../sass/main.scss */
+#card #headline {
+  color: #666666;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+/* line 60, ../sass/main.scss */
+#card #location {
+  color: #666666;
+  font-size: 12px;
+}
+/* line 65, ../sass/main.scss */
+#card #profile-photo {
+  display: inline;
+  float: right;
+}
+/* line 69, ../sass/main.scss */
+#card #body {
+  padding: 8px 0;
+}
+/* line 72, ../sass/main.scss */
+#card #body .section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dotted #CCC;
+}
+/* line 78, ../sass/main.scss */
+#card #body h2 {
+  color: #666666;
+  font-weight: bold;
+  font-size: 12px;
+}
+/* line 84, ../sass/main.scss */
+#card #body ul {
+  padding-top: 5px;
+}
+/* line 88, ../sass/main.scss */
+#card #body li {
+  font-size: 11px;
+  color: #666666;
+  margin-left: 20px;
+  line-height: 18px;
+}
+/* line 95, ../sass/main.scss */
+#card #body #status {
+  height: 50px;
+}
+
+/* line 101, ../sass/main.scss */
+#event {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 10px;
+  padding-bottom: 5px;
+}
+/* line 106, ../sass/main.scss */
+#event #event-name {
+  display: inline;
+  float: right;
+  line-height: 25px;
+  font-size: 12px;
+  color: #666666;
+}
+/* line 113, ../sass/main.scss */
+#event #event-logo {
+  display: inline;
+  float: left;
+}
