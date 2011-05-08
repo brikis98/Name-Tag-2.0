@@ -5,7 +5,7 @@
         <div id="name-headline">
           <h1 id="name">{firstName} {lastName}</h1>
           <div id="headline">{headline}</div>
-          <div id="location">{location.name}</div>  
+          {?location}<div id="location">{location.name}</div>{/location}  
         </div>
         <div id="profile-photo">
           {?pictureUrl}
