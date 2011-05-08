@@ -1,3 +1,3 @@
 # Overview
 
-Create name tags and badges for any conference using your LinkedIn Profile.
+Create name tags and badges for any conference or event using your LinkedIn Profile.

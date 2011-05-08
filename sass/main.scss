@@ -114,3 +114,15 @@ $tagWidth: 400px;
     @include float-left;
   }  
 }
+
+#login {
+  width: 99%;
+  text-align: right;
+  margin-top: 10px;
+  font-size: 12px; 
+}
+
+#logout { 
+  color: #006699;
+  text-decoration: none;
+}

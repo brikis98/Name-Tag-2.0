@@ -5,8 +5,8 @@ function onLinkedInAuth() {
     .result(gotProfile);
 }
 
-function gotProfile(profile) {
-  var base = dust.makeBase({
+function createDustBase() {
+  return dust.makeBase({
     loop: function(chunk, context, bodies, params) {
       var list = context.current();
       var start = params.start || 0;
@@ -15,13 +15,43 @@ function gotProfile(profile) {
         chunk.render(bodies.block, context.rebase(list[i]));
       }
       return chunk;
-    },
-    eventLogo: 'images/logo.png',
-    eventName: 'Google I/O 2011',
-    extended: true
-  });
-  
-  dust.render('badge', base.push(profile.values[0]), function(err, out) {
-    $('body').append(err ? err : out);
+    }
+  });  
+}
+
+function showLogout(profile) {
+  dust.render('logout', profile, function(err, out) {
+    $('#logout-container').html(err ? err : out);
   });
 }
+
+function hideLogout() {
+  $('#logout-container').empty();
+}
+
+function showCard(profile) {
+  var attrs = {eventLogo: 'images/logo.png', eventName: 'Google I/O 2011', extended: true};
+  var context = _.extend(profile, attrs);  
+  dust.render('badge', createDustBase().push(context), function(err, out) {
+    $('#badge').html(err ? err : out);
+  });  
+}
+
+function hideCard() {
+  $('#badge').empty();
+}
+
+function gotProfile(profiles) {
+  var profile = profiles.values[0];
+  showLogout(profile);
+  showCard(profile);
+}
+
+$(function() {
+  $('#logout').live('click', function(event) {
+    event.preventDefault();
+    IN.User.logout();
+    hideLogout();
+    hideCard();
+  });
+});

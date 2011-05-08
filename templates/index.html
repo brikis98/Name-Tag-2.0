@@ -7,11 +7,17 @@
     <link href='css/main.css' rel='stylesheet' type='text/css'/>
   </head>
   <body>
-    <script type="IN/Login" data-onAuth="onLinkedInAuth" data-size="large"></script>
+    <div id="login">
+      <script type="IN/Login" data-onAuth="onLinkedInAuth" data-size="large"></script>
+      <div id="logout-container"></div>
+    </div>
+    <div id="badge"></div>
   	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
   	<script type="text/javascript" src="js/dust-core-0.3.0.min.js"></script>
+  	<script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/badge.js"></script>
+    <script type="text/javascript" src="js/logout.js"></script>  	
   	<script type="text/javascript" src="js/application.js"></script>
-  	<script type="text/javascript" src="js/badge.js"></script>
   	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
   	  api_key: OJcd6q1udIndF9vAJZ073iRENrrPz9FTrGQ0PSsl1eJyO4wASCSi7DDiFMOUd1Rz{~n}
   	  authorize: true{~n}
