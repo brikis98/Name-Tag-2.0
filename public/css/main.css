@@ -207,6 +207,14 @@ footer, header, hgroup, menu, nav, section {
 }
 
 /* line 130, ../../sass/main.scss */
+#landing-page {
+  overflow: hidden;
+  *zoom: 1;
+  width: 800px;
+  margin: 50px auto;
+}
+
+/* line 136, ../../sass/main.scss */
 #hello {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -220,28 +228,62 @@ footer, header, hgroup, menu, nav, section {
   box-shadow: 0px 0px 5px #333333;
   background-color: #B31C01;
   width: 400px;
-  margin: 40px auto;
   text-align: center;
   padding: 15px 0;
   font-family: Arial, "MS Trebuchet", sans-serif;
+  display: inline;
+  float: left;
+  margin: 5px;
 }
-/* line 140, ../../sass/main.scss */
+/* line 147, ../../sass/main.scss */
 #hello h2 {
   color: #FFF;
   font-size: 60px;
   font-weight: bold;
 }
-/* line 146, ../../sass/main.scss */
+/* line 153, ../../sass/main.scss */
 #hello #my-name-is {
   color: #FFF;
   font-size: 22px;
   padding-bottom: 10px;
 }
-/* line 152, ../../sass/main.scss */
+/* line 159, ../../sass/main.scss */
 #hello #hello-contents {
   background-color: #FFF;
   height: 90px;
   padding-top: 10px;
   font-family: 'Covered By Your Grace', serif;
   font-size: 72px;
+}
+
+/* line 168, ../../sass/main.scss */
+#blurb {
+  display: inline;
+  float: left;
+  width: 350px;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+/* line 174, ../../sass/main.scss */
+#blurb h2 {
+  font-size: 36px;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+  color: #444;
+}
+/* line 180, ../../sass/main.scss */
+#blurb b {
+  font-weight: bold;
+}
+/* line 184, ../../sass/main.scss */
+#blurb p {
+  margin: 20px 0;
+  color: #888;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+/* line 192, ../../sass/main.scss */
+#sign-in {
+  margin: 40px auto;
+  width: 200px;
 }

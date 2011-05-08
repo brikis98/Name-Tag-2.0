@@ -127,15 +127,22 @@ $tagWidth: 400px;
   text-decoration: none;
 }
 
+#landing-page {
+  @include clearfix;
+  width: 800px;
+  margin: 50px auto;
+}
+
 #hello {
   @include border-radius(15px);
   @include single-box-shadow;
   background-color: #B31C01;
   width: 400px;
-  margin: 40px auto;
   text-align: center;
   padding: 15px 0;
   font-family: Arial, "MS Trebuchet", sans-serif;
+  @include float-left;
+  margin: 5px;
   
   h2 {
     color: #FFF; 
@@ -156,4 +163,33 @@ $tagWidth: 400px;
     font-family: 'Covered By Your Grace', serif;
     font-size: 72px;
   }
+}
+
+#blurb {
+  @include float-left;
+  width: 350px;
+  margin-left: 40px;
+  margin-top: 30px;
+  
+  h2 {
+    font-size: 36px;
+    font-family: Arial, "MS Trebuchet", sans-serif;
+    color: #444;
+  }
+  
+  b {
+    font-weight: bold;
+  }
+  
+  p {
+    margin: 20px 0;
+    color: #888;
+    font-size: 16px;
+    line-height: 22px; 
+  }
+}
+
+#sign-in {
+  margin: 40px auto;
+  width: 200px;
 }

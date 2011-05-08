@@ -45,15 +45,15 @@ function gotProfile(profiles) {
   var profile = profiles.values[0];
   showLogout(profile);
   showCard(profile);
-  hideHello();
+  hideLanding();
 }
 
-function showHello() {
-  $('#hello').show();
+function showLanding() {
+  $('#landing-page').show();
 }
 
-function hideHello() {
-  $('#hello').hide();
+function hideLanding() {
+  $('#landing-page').hide();
 }
 
 $(function() {
@@ -62,6 +62,6 @@ $(function() {
     IN.User.logout();
     hideLogout();
     hideCard();
-    showHello();
+    showLanding();
   });
 });
