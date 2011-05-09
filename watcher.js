@@ -3,7 +3,7 @@ var path = require('path');
 var _ = require('underscore');
 var watchTree = require('watch-tree');
 
-exports.watch = function(dust, templateDir, publicDir, templateExtension) {
+exports.watch = function(dust, templateDir, publicDir, templateExtension, doWrite) {
 	// Compile all templates at start-up
 	var templates = fs.readdirSync(templateDir);
 	_.each(templates, function(template) { compileTemplate(path.join(templateDir, template)); });
@@ -19,7 +19,9 @@ exports.watch = function(dust, templateDir, publicDir, templateExtension) {
 			var templateName = path.basename(file, templateExtension);
 			var compiled = dust.compile(fs.readFileSync(file, 'UTF-8'), templateName);
 			dust.loadSource(compiled);
-			fs.writeFileSync(path.join(publicDir, templateName + '.js'), compiled);
+			if (doWrite) {
+			  fs.writeFileSync(path.join(publicDir, templateName + '.js'), compiled);  
+			}			
 		}
 	}
 }
