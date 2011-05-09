@@ -281,7 +281,7 @@ $tagWidth: 400px;
 }
 
 #big-login {
-  width: 500px;
+  width: 600px;
   margin: 50px auto;
   text-align: center;
   
@@ -292,3 +292,69 @@ $tagWidth: 400px;
     margin-bottom: 30px;
   }
 }
+
+#done {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.blue-button {
+  @include background-image(linear-gradient(center top, #B4D8E9 0%, #DCEDF5 100%));
+  @include border-radius(3px);
+  border: 1px solid #64B0D4;
+  color: #006699;
+  width: 220px;
+  height: 26px;
+  line-height: 13px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 3px 10px 2px; 
+}
+
+.overlay {
+  font-family: Arial, "MS Trebuchet", sans-serif;
+  font-size: 12px;
+  background-color: #fff;
+  display: none;
+  z-index: 10000;
+  width: 350px;
+  padding: 15px;
+  text-align: left;
+  border: 2px solid #333;
+  @include border-radius(6px);
+  @include box-shadow(#CCC 0 0 50px);  
+  @include opacity(0.9);
+  h2 {
+    margin: 0 0 20px;
+    padding: 0px 0 13px 0px;
+    border-bottom: 1px solid #333;
+    font-size: 20px;    
+  }   
+  p { margin: 20px 0; }
+  a.close {
+    background: url('/images/close.png');
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+  } 
+}
+
+#show-url {
+  color: #006699; 
+  text-decoration: none; 
+  font-size: 18px; 
+  font-family: Arial, "MS Trebuchet", sans-serif;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+#show-url-container {
+  text-align: center;
+}
+  

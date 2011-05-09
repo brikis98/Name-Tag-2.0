@@ -42,7 +42,7 @@ var ProfileModel = Backbone.Model.extend({
 
 var NameTagController = Backbone.Controller.extend({
   initialize: function(options) {
-    _.bindAll(this, 'index', 'customize', 'show', 'logout', 'onLinkedInLoad', 'onLinkedInAuth', 'routeToCustomize', 'requireLogin');
+    _.bindAll(this, 'index', 'customize', 'show', 'logout', 'onLinkedInLoad', 'onLinkedInAuth', 'routeToCustomize', 'ensureLogin', 'renderWithProfile', 'nameTag');
     _.extend(this, Backbone.Events);
     
     this.view = options.view;
@@ -70,35 +70,44 @@ var NameTagController = Backbone.Controller.extend({
     window.location.hash = '#customize/' + this.eventModel.url(); 
   },
   
-  customize: function(name, extended, logo) {
-    
+  customize: function(name, extended, logo) {    
+    this.nameTag(name, extended, logo, this.view.renderCustomize);
+  },
+  
+  renderWithProfile: function(callback) {
+    if (this.profileModel.isEmpty()) {
+      this.profileModel.bind('change', _.once(callback));
+    } else {
+      callback();
+    }
+  },
+  
+  ensureLogin: function(callback) {
+    if (typeof IN !== 'undefined' && IN && IN.User) {
+      if (IN.User.isAuthorized()) {
+        callback();               
+      } else {
+        IN.Event.on(IN, 'auth', callback);
+        this.view.render('login');
+        this.view.parse(this.view.el);        
+      }     
+    } else {
+      var that = this;
+      this.bind('onLinkedInLoad', function() { that.ensureLogin(callback); });
+    }    
+  },
+  
+  show: function(name, extended, logo) {
+    this.nameTag(name, extended, logo, this.view.renderShow);
+  },
+  
+  nameTag: function(name, extended, logo, renderCallback) {
     if (name && extended && logo) {
       this.eventModel.set({eventName: name, eventLogo: logo, extended: extended == 'true'});  
     }
     
-    if (typeof IN !== 'undefined' && IN && IN.User) {
-      if (IN.User.isAuthorized()) {
-        if (this.profileModel.isEmpty()) {
-          this.profileModel.bind('change', _.once(this.customize));
-        } else {
-          this.view.render('customize', this.view.getFullContext());  
-        }                
-      } else {
-        this.requireLogin();
-      }     
-    } else {
-      this.bind('onLinkedInLoad', this.requireLogin);
-    }
-  },
-  
-  requireLogin: function() {
-    this.view.render('login');
-    this.view.parse(this.view.el);
-    IN.Event.on(IN, 'auth', this.customize);
-  },
-  
-  show: function(name, extended, logo) {
-    console.log('show');
+    var that = this;
+    this.ensureLogin(function() { that.renderWithProfile(renderCallback); });    
   },
   
   logout: function() {
@@ -119,11 +128,12 @@ var NameTagController = Backbone.Controller.extend({
 
 var NameTagView = Backbone.View.extend({
   initialize: function(options) {
-    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'updateBadge', 'getFullContext');
+    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'updateBadge', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay');
     
     this.logoutContainer = '#logout-container';        
     this.loginContainer = '#login-container';
     this.badgeContainer = '#badge';
+    this.doneContainer = '#done-contents';
     this.optionsForm = '#options-form';
     
     this.profileModel = options.profileModel;
@@ -133,7 +143,8 @@ var NameTagView = Backbone.View.extend({
   },
   
   events: {
-    'change input.event-options':     'eventOptionsChanged'
+    'change input.event-options':     'eventOptionsChanged',
+    'click .blue-button':             'done'
   },
   
   createDustBase: function() {
@@ -158,8 +169,50 @@ var NameTagView = Backbone.View.extend({
     });  
   },
   
+  done: function() {
+    this.getDoneOverlay().overlay().load();
+  },
+  
+  getDoneOverlay: function() {
+    var that = this;
+    if (!this.doneOverlay) {
+      this.doneOverlay = $('#done-overlay').overlay({
+        mask: {
+          color: '#ebecff',
+          loadSpeed: 200,
+          opacity: 0.9
+        },
+        oneInstance: false,
+        onBeforeLoad: function() {
+          that.shortenUrl('http://' + window.location.host + '#show/' + that.eventModel.url(), function(shortUrl) {
+            that.render('done', {showUrl: shortUrl}, that.doneContainer);  
+          });          
+        }  
+      });      
+    }
+    return this.doneOverlay;
+  },
+  
+  shortenUrl: function(url, callback) {
+    jsonlib.fetch({
+      url: 'https://www.googleapis.com/urlshortener/v1/url', 
+      header: 'Content-Type: application/json', 
+      data: JSON.stringify({longUrl: url})
+    }, function(response) {
+      callback(JSON.parse(response.content).id);
+    });
+  },
+  
   getFullContext: function() {
     return _.extend(this.profileModel.attributes, this.eventModel.attributes);
+  },
+  
+  renderCustomize: function() {
+    this.render('customize', this.getFullContext());
+  },
+  
+  renderShow: function() {
+    this.render('badge', this.getFullContext());
   },
   
   updateBadge: function() {
