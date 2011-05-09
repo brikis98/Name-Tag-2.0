@@ -1,0 +1,16 @@
+javascripts:
+  assets:
+    - public/js/jquery-1.6.min.js
+    - public/js/jquery.tools.min.js
+    - public/js/jquery.ba-serializeobject.min.js
+    - public/js/dust-core-0.3.0.min.js
+    - public/js/underscore-min.js
+    - public/js/backbone-min.js
+    - public/js/badge.js
+    - public/js/customize.js
+    - public/js/options.js
+    - public/js/login.js
+    - public/js/logout.js
+    - public/js/landing.js
+    - public/js/done.js       
+    - public/js/application.js
