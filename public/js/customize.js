@@ -1,1 +1,1 @@
-(function(){dust.register("customize",body_0);function body_0(chk,ctx){return chk.write("<div id=\"options\">").partial("options",ctx).write("</div><div id=\"badge\">").partial("badge",ctx).write("</div>");}return body_0;})();
+(function(){dust.register("customize",body_0);function body_0(chk,ctx){return chk.write("<div id=\"customize\"><div id=\"options\">").partial("options",ctx).write("</div><div id=\"badge\">").partial("badge",ctx).write("</div></div>");}return body_0;})();

@@ -193,7 +193,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 /* line 118, ../../sass/main.scss */
-#login {
+#login-container {
   width: 99%;
   text-align: right;
   margin-top: 10px;
@@ -339,4 +339,57 @@ footer, header, hgroup, menu, nav, section {
 #customize #badge {
   display: inline;
   float: right;
+}
+
+/* line 247, ../../sass/main.scss */
+.big-button {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(46%, #ffffff), color-stop(95%, #efefef));
+  background-image: -webkit-linear-gradient(center top, #ffffff 46%, #efefef 95%);
+  background-image: -moz-linear-gradient(center top, #ffffff 46%, #efefef 95%);
+  background-image: -o-linear-gradient(center top, #ffffff 46%, #efefef 95%);
+  background-image: linear-gradient(center top, #ffffff 46%, #efefef 95%);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: #cccccc 1px 1px 8px;
+  -webkit-box-shadow: #cccccc 1px 1px 8px;
+  -o-box-shadow: #cccccc 1px 1px 8px;
+  box-shadow: #cccccc 1px 1px 8px;
+  height: 60px;
+  line-height: 60px;
+  width: 300px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 257, ../../sass/main.scss */
+.big-button .in-logo {
+  display: inline;
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin: 10px 15px;
+  background: url("/images/in-logo-40x40.png") no-repeat scroll 0 0 transparent;
+}
+/* line 265, ../../sass/main.scss */
+.big-button .button-text {
+  display: inline;
+  float: left;
+}
+
+/* line 270, ../../sass/main.scss */
+#new-button {
+  text-decoration: none;
+  color: #000;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+/* line 278, ../../sass/main.scss */
+#new-button:hover {
+  color: #006699;
 }

@@ -1,1 +1,1 @@
-(function(){dust.register("logout",body_0);function body_0(chk,ctx){return chk.write("Welcome, ").reference(ctx.get("firstName"),ctx,"h").write(" ").reference(ctx.get("lastName"),ctx,"h").write(" [<a href=\"#\" id=\"logout\">Sign Out</a>]");}return body_0;})();
+(function(){dust.register("logout",body_0);function body_0(chk,ctx){return chk.write("Welcome, ").reference(ctx.get("firstName"),ctx,"h").write(" ").reference(ctx.get("lastName"),ctx,"h").write(" [<a href=\"#logout\" id=\"logout\">Sign Out</a>]");}return body_0;})();
