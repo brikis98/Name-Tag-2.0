@@ -393,3 +393,17 @@ footer, header, hgroup, menu, nav, section {
 #new-button:hover {
   color: #006699;
 }
+
+/* line 283, ../../sass/main.scss */
+#big-login {
+  width: 500px;
+  margin: 50px auto;
+  text-align: center;
+}
+/* line 288, ../../sass/main.scss */
+#big-login h3 {
+  font-size: 24px;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+  color: #444;
+  margin-bottom: 30px;
+}

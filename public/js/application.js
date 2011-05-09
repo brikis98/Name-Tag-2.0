@@ -16,7 +16,7 @@ var EventModel = Backbone.Model.extend({
 
 var ProfileModel = Backbone.Model.extend({
   initialize: function(options) {
-    _.bindAll(this, 'fetch', 'gotProfiles');
+    _.bindAll(this, 'fetch', 'gotProfiles', 'isEmpty');
   },
   
   fetch: function(options) {
@@ -33,18 +33,25 @@ var ProfileModel = Backbone.Model.extend({
   
   gotProfiles: function(profiles) {
     this.set(profiles.values[0]);
+  },
+  
+  isEmpty: function() {
+    return _.size(this.attributes) == 0;
   } 
 });
 
 var NameTagController = Backbone.Controller.extend({
   initialize: function(options) {
-    _.bindAll(this, 'index', 'customize', 'show', 'logout', 'onLinkedInLoad', 'onLinkedInAuth', 'routeToCustomize');
+    _.bindAll(this, 'index', 'customize', 'show', 'logout', 'onLinkedInLoad', 'onLinkedInAuth', 'routeToCustomize', 'requireLogin');
+    _.extend(this, Backbone.Events);
     
     this.view = options.view;
     this.view.controller = this;
     
     this.profileModel = options.profileModel;
     this.eventModel = options.eventModel;
+    
+    this.profileModel.bind('change', this.view.toggleLogout);
   },
   
   routes: {
@@ -57,16 +64,37 @@ var NameTagController = Backbone.Controller.extend({
   
   index: function() {
     this.view.render();
-    this.profileModel.bind('change', this.view.toggleLogout);
   },
   
-  routeToCustomize: function() {
+  routeToCustomize: function(useModel) {
     window.location.hash = '#customize/' + this.eventModel.url(); 
   },
   
   customize: function(name, extended, logo) {
-    this.eventModel.set({eventName: name, eventLogo: logo, extended: extended == 'true'});
-    this.view.render('customize', this.view.getFullContext());
+    
+    if (name && extended && logo) {
+      this.eventModel.set({eventName: name, eventLogo: logo, extended: extended == 'true'});  
+    }
+    
+    if (typeof IN !== 'undefined' && IN && IN.User) {
+      if (IN.User.isAuthorized()) {
+        if (this.profileModel.isEmpty()) {
+          this.profileModel.bind('change', _.once(this.customize));
+        } else {
+          this.view.render('customize', this.view.getFullContext());  
+        }                
+      } else {
+        this.requireLogin();
+      }     
+    } else {
+      this.bind('onLinkedInLoad', this.requireLogin);
+    }
+  },
+  
+  requireLogin: function() {
+    this.view.render('login');
+    this.view.parse(this.view.el);
+    IN.Event.on(IN, 'auth', this.customize);
   },
   
   show: function(name, extended, logo) {
@@ -80,6 +108,7 @@ var NameTagController = Backbone.Controller.extend({
   
   onLinkedInLoad: function() {
     this.view.parse();
+    this.trigger('onLinkedInLoad');
     IN.Event.on(IN, 'auth', this.onLinkedInAuth);
   },
   
@@ -143,15 +172,16 @@ var NameTagView = Backbone.View.extend({
     this.eventModel.set(values);
   },
   
-  parse: function() {
-    IN.parse($(this.loginContainer).get(0));
+  parse: function(container) {
+    container = container || this.loginContainer;
+    IN.parse($(container).get(0));
   },
   
   toggleLogout: function() {
-    if (_.size(this.profileModel.attributes)) {
-      this.render('logout', this.profileModel.attributes, this.logoutContainer);
-    } else {
+    if (this.profileModel.isEmpty()) {
       $(this.logoutContainer).empty();
+    } else {
+      this.render('logout', this.profileModel.attributes, this.logoutContainer);
     }
   },  
   
