@@ -128,7 +128,7 @@ var NameTagController = Backbone.Controller.extend({
 
 var NameTagView = Backbone.View.extend({
   initialize: function(options) {
-    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'updateBadge', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay');
+    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay');
     
     this.logoutContainer = '#logout-container';        
     this.loginContainer = '#login-container';
@@ -137,9 +137,7 @@ var NameTagView = Backbone.View.extend({
     this.optionsForm = '#options-form';
     
     this.profileModel = options.profileModel;
-    this.eventModel = options.eventModel;  
-    
-    this.eventModel.bind('change', this.updateBadge);  
+    this.eventModel = options.eventModel;    
   },
   
   events: {
@@ -215,14 +213,11 @@ var NameTagView = Backbone.View.extend({
     this.render('badge', this.getFullContext());
   },
   
-  updateBadge: function() {
-    this.controller.routeToCustomize();
-  },
-  
   eventOptionsChanged: function(event) {
     var values = $(this.optionsForm).serializeObject();
     values.extended = values.extended == 'true';
     this.eventModel.set(values);
+    this.controller.routeToCustomize();
   },
   
   parse: function(container) {
