@@ -9,7 +9,7 @@ $normalFontColor: #666;
 $tagWidth: 400px;
 
 #name-tag {
-  margin: 50px auto;
+  margin: 50px auto 10px;
   width: $tagWidth;
   font-family: Arial, "MS Trebuchet", sans-serif;
   @include border-radius($borderRadius); 
@@ -357,4 +357,18 @@ $tagWidth: 400px;
 #show-url-container {
   text-align: center;
 }
+
+#print {
+  text-align: center;
   
+  a {
+    color: #006699;
+    text-decoration: none;
+    display: block; 
+    height: 35px; 
+    line-height: 35px; 
+    background: url("/images/print_icon.gif") no-repeat scroll 0px -4px transparent;
+    width: 100px;
+    margin: 0 auto;
+  }
+}

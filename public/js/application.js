@@ -128,7 +128,7 @@ var NameTagController = Backbone.Controller.extend({
 
 var NameTagView = Backbone.View.extend({
   initialize: function(options) {
-    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay');
+    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay', 'renderWithCallback', 'print');
     
     this.logoutContainer = '#logout-container';        
     this.loginContainer = '#login-container';
@@ -142,7 +142,20 @@ var NameTagView = Backbone.View.extend({
   
   events: {
     'change input.event-options':     'eventOptionsChanged',
-    'click .blue-button':             'done'
+    'click .blue-button':             'done',
+    'click #print a':                 'print'
+  },
+
+  print: function(event) {
+    event.preventDefault();
+    
+    // Super hacky "print" window.
+    var printWindow = window.open('', 'Print Name Tag | Name Tag 2.0', 'height=550, width=500');
+    var printDocument = printWindow.document;
+    this.renderWithCallback('badge', _.extend({}, this.getFullContext(), {hidePrint: true}), function(out) {
+      printDocument.write('<html><head><link href="css/main.css" rel="stylesheet" type="text/css"/></head><body>' + out + '</body></html>');
+      printDocument.close();
+    });    
   },
   
   createDustBase: function() {
@@ -202,11 +215,11 @@ var NameTagView = Backbone.View.extend({
   },
   
   getFullContext: function() {
-    return _.extend(this.profileModel.attributes, this.eventModel.attributes);
+    return _.extend({}, this.profileModel.attributes, this.eventModel.attributes);
   },
   
   renderCustomize: function() {
-    this.render('customize', this.getFullContext());
+    this.render('customize', _.extend({}, this.getFullContext(), {hidePrint: true}));
   },
   
   renderShow: function() {
@@ -233,13 +246,19 @@ var NameTagView = Backbone.View.extend({
     }
   },  
   
-  render: function(template, context, container) {
-    container = container || this.el;
+  renderWithCallback: function(template, context, callback) {    
     template = template || 'landing';
     context = this.createDustBase().push(context || {});
     dust.render(template, context, function(err, out) {
-      $(container).html(err ? err : out);
+      callback(err ? err : out);
     });    
+  },
+  
+  render: function(template, context, container) {
+    container = container || this.el;
+    this.renderWithCallback(template, context, function(out) {
+      $(container).html(out);
+    });
   }
 });
 

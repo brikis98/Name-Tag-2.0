@@ -66,7 +66,7 @@ footer, header, hgroup, menu, nav, section {
 
 /* line 11, ../../sass/main.scss */
 #name-tag {
-  margin: 50px auto;
+  margin: 50px auto 10px;
   width: 400px;
   font-family: Arial, "MS Trebuchet", sans-serif;
   -moz-border-radius: 5px;
@@ -501,4 +501,20 @@ footer, header, hgroup, menu, nav, section {
 /* line 357, ../../sass/main.scss */
 #show-url-container {
   text-align: center;
+}
+
+/* line 361, ../../sass/main.scss */
+#print {
+  text-align: center;
+}
+/* line 364, ../../sass/main.scss */
+#print a {
+  color: #006699;
+  text-decoration: none;
+  display: block;
+  height: 35px;
+  line-height: 35px;
+  background: url("/images/print_icon.gif") no-repeat scroll 0px -4px transparent;
+  width: 100px;
+  margin: 0 auto;
 }
