@@ -1,0 +1,19 @@
+{
+  "author": "Jim Brikman (http://www.ybrikman.com)",
+  "name": "name-tag",
+  "description": "Create name tags and badges for any conference or event using your LinkedIn Profile.",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brikis98/Name-Tag-2.0.git"
+  },
+  "engines": {
+    "node": "~v0.4.2"
+  },
+  "dependencies": {
+    "express": "*",
+    "dust": "*",
+    "underscore": "*"
+  },
+  "devDependencies": {}
+}
