@@ -372,3 +372,31 @@ $tagWidth: 400px;
     margin: 0 auto;
   }
 }
+
+#footer {
+  clear: both;
+  margin: 70px auto 20px;
+  padding-top: 6px;
+  border-top: 1px solid #CCC;
+  width: 800px;
+  text-align: center;
+  font-size: 12px;
+  
+  .footer-item {
+    padding: 0 20px;
+    border-right: 1px solid #CCC;
+    
+    &.last {
+      border-right: none;
+    } 
+  }
+  
+  a {
+    color: #006699;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

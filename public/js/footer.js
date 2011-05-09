@@ -1,0 +1,1 @@
+(function(){dust.register("footer",body_0);function body_0(chk,ctx){return chk.write("<div id=\"footer\"><span class=\"footer-item\"><a href=\"/\">Name Tag 2.0</a></span><span class=\"footer-item\"><a href=\"https://github.com/brikis98/Name-Tag-2.0\">Get the Code</a></span><span class=\"footer-item last\"><a href=\"#faq\">FAQ</a></span></div>");}return body_0;})();

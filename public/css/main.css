@@ -518,3 +518,32 @@ footer, header, hgroup, menu, nav, section {
   width: 100px;
   margin: 0 auto;
 }
+
+/* line 376, ../../sass/main.scss */
+#footer {
+  clear: both;
+  margin: 70px auto 20px;
+  padding-top: 6px;
+  border-top: 1px solid #CCC;
+  width: 800px;
+  text-align: center;
+  font-size: 12px;
+}
+/* line 385, ../../sass/main.scss */
+#footer .footer-item {
+  padding: 0 20px;
+  border-right: 1px solid #CCC;
+}
+/* line 389, ../../sass/main.scss */
+#footer .footer-item.last {
+  border-right: none;
+}
+/* line 394, ../../sass/main.scss */
+#footer a {
+  color: #006699;
+  text-decoration: none;
+}
+/* line 398, ../../sass/main.scss */
+#footer a:hover {
+  text-decoration: underline;
+}
