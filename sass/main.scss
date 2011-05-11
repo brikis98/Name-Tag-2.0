@@ -97,7 +97,6 @@ $tagWidth: 400px;
 #event {
   @include clearfix;
   padding: $cardPadding;
-  padding-bottom: 5px;
   
   #event-name {
     @include float-right;
@@ -230,8 +229,13 @@ $tagWidth: 400px;
       margin-left: 10px;
     }
     
-    #size {
+    .radio {
       font-size: 14px;
+    }
+    
+    .radio-label {
+      width: 50px;
+      display: inline-block;
     }
   }
   

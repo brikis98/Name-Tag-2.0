@@ -12,5 +12,6 @@ javascripts:
     - public/js/login.js
     - public/js/logout.js
     - public/js/landing.js
+    - public/js/eventHeader.js
     - public/js/done.js       
     - public/js/application.js

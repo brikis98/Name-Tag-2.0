@@ -5,7 +5,8 @@ var EventModel = Backbone.Model.extend({
   
   defaults: {
     eventLogo: 'http://' + window.location.host + '/images/logo.png', 
-    eventName: 'LinkedIn Talent Connect 2011', 
+    eventName: 'LinkedIn Talent Connect 2011',
+    namePositionTop: false, 
     extended: false
   },
   
@@ -14,7 +15,10 @@ var EventModel = Backbone.Model.extend({
   },
   
   getUrl: function(escaped) {
-    return this.encodeValue(this.get('eventName'), escaped) + '/' + this.encodeValue(this.get('extended'), escaped) + "/" + this.encodeValue(this.get('eventLogo'), escaped);
+    return this.encodeValue(this.get('eventName'), escaped) + '/' + 
+           this.encodeValue(this.get('extended'), escaped) + "/" + 
+           this.encodeValue(this.get('namePositionTop'), escaped) + "/" +
+           this.encodeValue(this.get('eventLogo'), escaped);
   },
   
   encodeValue: function(value, escape) {
@@ -63,11 +67,11 @@ var NameTagController = Backbone.Controller.extend({
   },
   
   routes: {
-    '':                                     'index',            // #
-    'customize/:name/:extended/*logo':      'customize',        // #customize/Talent+Connect/logo.png/false
-    'customize':                            'routeToCustomize', // #customize
-    'show/:name/:extended/*logo':           'show',             // #show/Talent+Connect/logo.png/false
-    'logout':                               'logout'            // #logout
+    '':                                                      'index',            // #
+    'customize/:name/:extended/:namePositionTop/*logo':      'customize',        // #customize/Talent+Connect/logo.png/false
+    'customize':                                             'routeToCustomize', // #customize
+    'show/:name/:extended/:namePositionTop/*logo':           'show',             // #show/Talent+Connect/logo.png/false
+    'logout':                                                'logout'            // #logout
   },
   
   index: function() {
@@ -78,8 +82,8 @@ var NameTagController = Backbone.Controller.extend({
     window.location.hash = '#customize/' + this.eventModel.url(); 
   },
   
-  customize: function(name, extended, logo) {    
-    this.nameTag(name, extended, logo, this.view.renderCustomize);
+  customize: function(name, extended, namePositionTop, logo) {    
+    this.nameTag(name, extended, namePositionTop, logo, this.view.renderCustomize);
   },
   
   renderWithProfile: function(callback) {
@@ -105,13 +109,13 @@ var NameTagController = Backbone.Controller.extend({
     }    
   },
   
-  show: function(name, extended, logo) {
-    this.nameTag(name, extended, logo, this.view.renderShow);
+  show: function(name, extended, namePositionTop, logo) {
+    this.nameTag(name, extended, namePositionTop, logo, this.view.renderShow);
   },
   
-  nameTag: function(name, extended, logo, renderCallback) {
+  nameTag: function(name, extended, namePositionTop, logo, renderCallback) {
     if (name && extended && logo) {
-      this.eventModel.set({eventName: decodeURIComponent(name), eventLogo: decodeURIComponent(logo), extended: decodeURIComponent(extended) == 'true'});  
+      this.eventModel.set({eventName: decodeURIComponent(name), eventLogo: decodeURIComponent(logo), namePositionTop: decodeURIComponent(namePositionTop) == 'true', extended: decodeURIComponent(extended) == 'true'});  
     }
     
     var that = this;
@@ -170,7 +174,6 @@ var NameTagView = Backbone.View.extend({
       hasStatus: !$(this.statusContainer).hasClass('empty'),
       status: $(this.statusContainer).val() 
     };
-    console.log('options = ' + JSON.stringify(options));
     this.renderWithCallback('badge', _.extend({}, this.getFullContext(), options), function(out) {
       printDocument.write('<html><head><link href="css/main.css" rel="stylesheet" type="text/css"/></head><body>' + out + '</body></html>');
       printDocument.close();
@@ -268,6 +271,7 @@ var NameTagView = Backbone.View.extend({
   eventOptionsChanged: function(event) {
     var values = $(this.optionsForm).serializeObject();
     values.extended = values.extended == 'true';
+    values.namePositionTop = values.namePositionTop == 'true'; 
     this.eventModel.set(values);
     this.controller.saveLocation('#customize/' + this.eventModel.url());
     this.render('badge', this.getCustomizeContext(), this.badgeContainer);

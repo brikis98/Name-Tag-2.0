@@ -1,6 +1,9 @@
 <div id="name-tag">
   <div id="contents">
-    <div id="card">
+    {?namePositionTop}
+      {>eventHeader/}
+    {/namePositionTop}    
+    <div id="card">      
       <div id="header">
         <div id="name-headline">
           <h1 id="name">{firstName} {lastName}</h1>
@@ -56,14 +59,9 @@
         </div>
       {/extended}
     </div>
-    <div id="event">
-      <div id="event-logo">
-        {?eventLogo}
-          <img src="{eventLogo}"/>
-        {/eventLogo}  
-      </div>            
-      <div id="event-name">{eventName}</div>
-    </div>          
+    {^namePositionTop}
+      {>eventHeader/}
+    {/namePositionTop}                
   </div>      
 </div>
 <div id="print">
