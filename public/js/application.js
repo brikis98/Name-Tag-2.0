@@ -165,6 +165,7 @@ var NameTagView = Backbone.View.extend({
     var printDocument = printWindow.document;
     var options = {
       hidePrint: true,
+      hideStatusInput: true,      
       hasStatus: !$(this.statusContainer).hasClass('empty'),
       status: $(this.statusContainer).val() 
     };

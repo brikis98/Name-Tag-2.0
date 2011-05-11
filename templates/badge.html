@@ -44,13 +44,13 @@
           <div class="section">
             <h2>Status</h2>
             <div id="status">
-              {?hidePrint}
+              {?hideStatusInput}
                 {?hasStatus}
                   {status}
                 {/hasStatus}
               {:else}
                 <textarea id="status-text" class="empty">Enter a status</textarea>
-              {/hidePrint}
+              {/hideStatusInput}
             </div>
           </div>
         </div>
