@@ -136,13 +136,14 @@ var NameTagController = Backbone.Controller.extend({
 
 var NameTagView = Backbone.View.extend({
   initialize: function(options) {
-    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay', 'renderWithCallback', 'print');
+    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay', 'renderWithCallback', 'print', 'statusClicked', 'statusBlur');
     
     this.logoutContainer = '#logout-container';        
     this.loginContainer = '#login-container';
     this.badgeContainer = '#badge';
     this.doneContainer = '#done-contents';
     this.optionsForm = '#options-form';
+    this.statusContainer = '#status-text';
     
     this.profileModel = options.profileModel;
     this.eventModel = options.eventModel;    
@@ -151,7 +152,9 @@ var NameTagView = Backbone.View.extend({
   events: {
     'change input.event-options':     'eventOptionsChanged',
     'click .blue-button':             'done',
-    'click #print a':                 'print'
+    'click #print a':                 'print',
+    'click #status-text':             'statusClicked',
+    'blur #status-text':              'statusBlur'
   },
 
   print: function(event) {
@@ -160,10 +163,32 @@ var NameTagView = Backbone.View.extend({
     // Super hacky "print" window.
     var printWindow = window.open('', 'Print Name Tag | Name Tag 2.0', 'height=550, width=500');
     var printDocument = printWindow.document;
-    this.renderWithCallback('badge', _.extend({}, this.getFullContext(), {hidePrint: true}), function(out) {
+    var options = {
+      hidePrint: true,
+      hasStatus: !$(this.statusContainer).hasClass('empty'),
+      status: $(this.statusContainer).val() 
+    };
+    console.log('options = ' + JSON.stringify(options));
+    this.renderWithCallback('badge', _.extend({}, this.getFullContext(), options), function(out) {
       printDocument.write('<html><head><link href="css/main.css" rel="stylesheet" type="text/css"/></head><body>' + out + '</body></html>');
       printDocument.close();
     });    
+  },
+  
+  statusClicked: function(event) {
+    var textArea = $(event.target);
+    if (textArea.hasClass('empty')) {
+      textArea.val('');
+      textArea.removeClass('empty');
+    }
+  },
+  
+  statusBlur: function(event) {
+    var textArea = $(event.target);
+    if (textArea.val() == '') {
+      textArea.val('Enter a status');
+      textArea.addClass('empty');      
+    }
   },
   
   createDustBase: function() {

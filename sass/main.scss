@@ -90,11 +90,7 @@ $tagWidth: 400px;
       color: $normalFontColor; 
       margin-left: 20px;
       line-height: 18px; 
-    }
-    
-    #status {
-      height: 50px;
-    }
+    }    
   }
 }
 
@@ -398,5 +394,31 @@ $tagWidth: 400px;
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+@mixin status-style {
+  height: 50px;
+  font-size: 11px; 
+  color: #666;
+  line-height: 18px; 
+}
+
+#status {
+  @include status-style;
+  padding-top: 8px; 
+}
+
+#status-text {
+  @include status-style;
+  width: 367px; 
+  border: 0;   
+  height: 51px; 
+  
+  &.empty {
+    text-align: center; 
+    line-height: 51px;
+    color: #CCC;
+    border: 1px solid #EEE;
   }
 }
