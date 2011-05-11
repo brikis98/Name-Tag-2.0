@@ -1,6 +1,6 @@
 var EventModel = Backbone.Model.extend({
   initialize: function(options) {
-    _.bindAll(this, 'url');
+    _.bindAll(this, 'url', 'getUrl', 'encodeValue');
   },
   
   defaults: {
@@ -10,7 +10,15 @@ var EventModel = Backbone.Model.extend({
   },
   
   url: function() {
-    return encodeURIComponent(this.get('eventName')) + '/' + encodeURIComponent(this.get('extended')) + "/" + encodeURIComponent(this.get('eventLogo'));
+    return this.getUrl(true);
+  },
+  
+  getUrl: function(escaped) {
+    return this.encodeValue(this.get('eventName'), escaped) + '/' + this.encodeValue(this.get('extended'), escaped) + "/" + this.encodeValue(this.get('eventLogo'), escaped);
+  },
+  
+  encodeValue: function(value, escape) {
+    return escape ? encodeURIComponent(value) : value;
   }  
 });
 
@@ -103,7 +111,7 @@ var NameTagController = Backbone.Controller.extend({
   
   nameTag: function(name, extended, logo, renderCallback) {
     if (name && extended && logo) {
-      this.eventModel.set({eventName: name, eventLogo: logo, extended: extended == 'true'});  
+      this.eventModel.set({eventName: decodeURIComponent(name), eventLogo: decodeURIComponent(logo), extended: decodeURIComponent(extended) == 'true'});  
     }
     
     var that = this;
