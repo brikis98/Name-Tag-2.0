@@ -136,7 +136,7 @@ var NameTagController = Backbone.Controller.extend({
 
 var NameTagView = Backbone.View.extend({
   initialize: function(options) {
-    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay', 'renderWithCallback', 'print', 'statusClicked', 'statusBlur');
+    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay', 'renderWithCallback', 'print', 'statusClicked', 'statusBlur', 'getCustomizeContext');
     
     this.logoutContainer = '#logout-container';        
     this.loginContainer = '#login-container';
@@ -151,6 +151,7 @@ var NameTagView = Backbone.View.extend({
   
   events: {
     'change input.event-options':     'eventOptionsChanged',
+    'keyup input.event-options':      'eventOptionsChanged',
     'click .blue-button':             'done',
     'click #print a':                 'print',
     'click #status-text':             'statusClicked',
@@ -252,8 +253,12 @@ var NameTagView = Backbone.View.extend({
     return _.extend({}, this.profileModel.attributes, this.eventModel.attributes);
   },
   
+  getCustomizeContext: function() {
+    return _.extend({}, this.getFullContext(), {hidePrint: true});
+  },
+  
   renderCustomize: function() {
-    this.render('customize', _.extend({}, this.getFullContext(), {hidePrint: true}));
+    this.render('customize', this.getCustomizeContext());
   },
   
   renderShow: function() {
@@ -264,7 +269,8 @@ var NameTagView = Backbone.View.extend({
     var values = $(this.optionsForm).serializeObject();
     values.extended = values.extended == 'true';
     this.eventModel.set(values);
-    this.controller.routeToCustomize();
+    this.controller.saveLocation('#customize/' + this.eventModel.url());
+    this.render('badge', this.getCustomizeContext(), this.badgeContainer);
   },
   
   parse: function(container) {
