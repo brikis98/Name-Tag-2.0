@@ -34,7 +34,7 @@ var ProfileModel = Backbone.Model.extend({
   fetch: function(options) {
     IN.API
       .Profile('me')
-      .fields('id', 'firstName', 'lastName', 'headline', 'location', 'positions', 'educations', 'pictureUrl')
+      .fields('id', 'firstName', 'lastName', 'headline', 'location', 'positions', 'educations', 'pictureUrl', 'publicProfileUrl')
       .result(this.gotProfiles);    
   },
   

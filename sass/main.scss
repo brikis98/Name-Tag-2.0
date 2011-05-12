@@ -9,25 +9,50 @@ $normalFontColor: #666;
 $tagWidth: 400px;
 
 #name-tag {
-  margin: 50px auto 10px;
   width: $tagWidth;
   font-family: Arial, "MS Trebuchet", sans-serif;
+  margin: 50px auto;
+  
+  h3 {
+    font-size: 12px;
+    color: #444;
+    margin: 10px 0 20px 0;
+    text-align: center;
+  }    
+}
+
+.tag-container {
   @include border-radius($borderRadius); 
   border: 1px solid $borderColor; 
   padding: 1px;
 }
 
-#contents {
+.tag-contents {
   background-color: $borderColor;
   @include border-radius($borderRadius);
   padding: 5px;
 }
 
-#card {
+.back-container {
+  margin-top: 50px;
+  font-size: 12px;
+  
+  a {    
+    color: #006699;
+    text-decoration: none;
+  }  
+}
+
+.tag-inner {
   background-color: #FFF;
   border: 1px solid #CCC;
   padding: $cardPadding;
   @include clearfix;
+  height: 85px;
+  
+  &.extended {
+    height: 355px;  
+  }  
   
   .at {
     font-size: 90%;
@@ -225,10 +250,6 @@ $tagWidth: 400px;
       width: 220px;
     }
     
-    #full {
-      margin-left: 10px;
-    }
-    
     .radio {
       font-size: 14px;
     }
@@ -241,6 +262,7 @@ $tagWidth: 400px;
   
   #badge {
     @include float-right;
+    margin: 0 auto 10px;    
   }  
 }
 
@@ -360,6 +382,8 @@ $tagWidth: 400px;
 
 #print {
   text-align: center;
+  padding-left: 22px;
+  margin-top: 40px;
   
   a {
     color: #006699;
@@ -424,5 +448,36 @@ $tagWidth: 400px;
     line-height: 51px;
     color: #CCC;
     border: 1px solid #EEE;
+  }
+}
+
+#qr {
+  float: right; 
+  margin-top: -8px;
+  margin-right: -10px;
+}
+
+.public-profile-url {
+  float: left;
+  
+  .back-label {
+    color: #777; 
+    font-size: 19px; 
+    margin: 18px 0pt 5px;
+  }
+}
+
+#created-using {
+  clear: both;
+  font-size: 10px;
+  margin-top: 344px;
+  
+  .back-label {
+    float: left;
+    color: #444;
+  }
+  
+  a {
+    float: right;
   }
 }
