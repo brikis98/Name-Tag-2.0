@@ -1,17 +1,13 @@
 javascripts:
   assets:
-    - public/js/jquery-1.6.min.js
-    - public/js/jquery.tools.min.js
-    - public/js/jquery.ba-serializeobject.min.js
-    - public/js/dust-core-0.3.0.min.js
-    - public/js/underscore-min.js
-    - public/js/backbone-min.js
-    - public/js/badge.js
-    - public/js/customize.js
-    - public/js/options.js
-    - public/js/login.js
-    - public/js/logout.js
-    - public/js/landing.js
-    - public/js/eventHeader.js
-    - public/js/done.js       
-    - public/js/application.js
+    - app/lib/jquery-1.6.min.js
+    - app/lib/jquery.tools.min.js
+    - app/lib/jquery.ba-serializeobject.min.js
+    - app/lib/dust-core-0.3.0.min.js
+    - app/lib/underscore-min.js
+    - app/lib/backbone-min.js
+    - app/templates-compiled/*.js
+    - app/models/*.js
+    - app/views/*.js
+    - app/controllers/*.js
+    - app/bootstrap/*.js

@@ -3,11 +3,11 @@ require 'fssm'
 
 class JammitWatch
   def self.compile(base, relative)
-	`jammit -c jammit.yml -o public/js/assets`
+	`jammit -c jammit.yml -o public/js`
   end
   
   def self.monitor
-    paths = {'public/js' => '*.js'}
+    paths = {'app' => '**/*.js'}
 
 	FSSM.monitor do |monitor|
 	  paths.each do |path, glob|		

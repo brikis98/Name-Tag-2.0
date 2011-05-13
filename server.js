@@ -3,7 +3,8 @@ var express = require('express'),
 	_ = require('underscore'),
 	watcher = require('./watcher'),
 	path = require('path'),
-	PUBLIC_DIR = './public';
+	PUBLIC_DIR = './public',
+	APP_DIR = './app';
 
 var app = express.createServer();
 
@@ -11,11 +12,11 @@ app.configure(function() {
   app.use(express.static(path.join(__dirname, PUBLIC_DIR)));  
 });
 app.configure('development', function() {
-  watcher.watch(dust, './templates', path.join(PUBLIC_DIR, 'js'), '.html', true);
+  watcher.watch(dust, path.join(APP_DIR, 'templates'), path.join(APP_DIR, 'templates-compiled'), '.html', true);
   app.use(express.errorHandler({dumpExceptions: true, showStack: true}));  
 });
 app.configure('production', function() {
-  watcher.watch(dust, './templates', path.join(PUBLIC_DIR, 'js'), '.html', false);
+  watcher.watch(dust, path.join(APP_DIR, 'templates'), path.join(APP_DIR, 'templates-compiled'), '.html', false);
   app.use(express.errorHandler());
 });
 
