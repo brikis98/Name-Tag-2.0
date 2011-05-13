@@ -74,6 +74,14 @@ var NameTagView = Backbone.View.extend({
           chunk.render(bodies.block, context.rebase(list[i]));
         }
         return chunk;
+      },
+      
+      equals: function(chunk, context, bodies, params) {
+        var value = context.current();
+        if (value == params.value) {
+          chunk.render(bodies.block, context);
+        }
+        return chunk;
       }
     });  
   },

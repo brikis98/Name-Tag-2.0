@@ -10,14 +10,25 @@
   </div>
   <div class="option radio">
     <label class="option-label">Logo position:</label>
-    <input type="radio" name="namePositionTop" value="true" {?namePositionTop}checked="checked"{/namePositionTop} id="top" class="event-options"/><label class="radio-label" for="top">Top</label>
-    <input type="radio" name="namePositionTop" value="false" {^namePositionTop}checked="checked"{/namePositionTop} id="bottom" class="event-options"/><label class="radio-label" for="bottom">Bottom</label>        
+    <input type="radio" name="namePositionTop" value="true" {?namePositionTop}checked="checked"{/namePositionTop} id="top" class="event-options"/>
+    <label class="radio-label" for="top">Top</label>
+    <input type="radio" name="namePositionTop" value="false" {^namePositionTop}checked="checked"{/namePositionTop} id="bottom" class="event-options"/>
+    <label class="radio-label" for="bottom">Bottom</label>        
   </div>  
   <div class="option radio">
     <label class="option-label">Size:</label>
-    <input type="radio" name="extended" value="false" {^extended}checked="checked"{/extended} id="mini" class="event-options"/><label class="radio-label" for="mini">Mini</label>
-    <input type="radio" name="extended" value="true" {?extended}checked="checked"{/extended} id="full" class="event-options"/><label class="radio-label" for="full">Full</label>
+    <input type="radio" name="extended" value="false" {^extended}checked="checked"{/extended} id="mini" class="event-options"/>
+    <label class="radio-label" for="mini">Mini</label>
+    <input type="radio" name="extended" value="true" {?extended}checked="checked"{/extended} id="full" class="event-options"/>
+    <label class="radio-label" for="full">Full</label>
   </div>
+  <div class="option radio">
+    <label class="option-label">Style:</label>
+    <input type="radio" name="style" value="gray" {#equals:style value="gray"}checked="checked"{/equals} id="gray" class="event-options"/>
+    <label class="radio-label" for="gray">Gray</label>
+    <input type="radio" name="style" value="white" {#equals:style value="white"}checked="checked"{/equals} id="white" class="event-options"/>
+    <label class="radio-label" for="white">White</label>
+  </div>  
 </form>
 <div id="done">
   <input type="button" class="blue-button" value="Done"/>
