@@ -1,6 +1,6 @@
 var EventModel = Backbone.Model.extend({
   initialize: function(options) {
-    _.bindAll(this, 'url', 'getUrl', 'encodeValue', 'getRoutePattern', 'update');
+    _.bindAll(this, 'url', 'getUrl', 'encodeValue', 'getRoutePattern', 'update', 'set', 'cleanupValue');
   },
   
   defaults: { 
@@ -49,5 +49,20 @@ var EventModel = Backbone.Model.extend({
     }
 
     this.set(newValues);
+  },
+  
+  set: function(attributes, options) {
+    var that = this;
+    _.each(attributes, function(value, key) {
+      attributes[key] = that.cleanupValue(key, value);
+    });
+    Backbone.Model.prototype.set.call(this, attributes, options);
+  },
+  
+  cleanupValue: function(key, value) {
+    if (_.isBoolean(this.get(key))) {
+      return value == 'true';
+    }
+    return value;
   }  
 });

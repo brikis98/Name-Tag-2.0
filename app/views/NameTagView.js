@@ -138,8 +138,6 @@ var NameTagView = Backbone.View.extend({
   
   eventOptionsChanged: function(event) {
     var values = $(this.optionsForm).serializeObject();
-    values.extended = values.extended == 'true';
-    values.namePositionTop = values.namePositionTop == 'true'; 
     this.eventModel.set(values);
     this.controller.saveLocation('#customize/' + this.eventModel.url());
     this.render('badge', this.getCustomizeContext(), this.badgeContainer);
