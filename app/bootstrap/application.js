@@ -5,7 +5,7 @@ $(function() {
   var controller = new NameTagController({profileModel: profileModel, eventModel: eventModel, view: view});
   Backbone.history.start();
   
-  window.onLinkedInLoad = controller.onLinkedInLoad;
+  window.onLinkedInLoad = controller.onLinkedInLoad;  
   
   $.getScript('http://platform.linkedin.com/in.js?async=true', function() {
     IN.init({

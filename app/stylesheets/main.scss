@@ -8,10 +8,14 @@ $cardPadding: 10px;
 $normalFontColor: #666;
 $tagWidth: 400px;
 
+a {
+  color: #006699;
+}
+
 #name-tag {
   width: $tagWidth;
   font-family: Arial, "MS Trebuchet", sans-serif;
-  margin: 50px auto;
+  margin: 50px auto; 
   
   h3 {
     font-size: 12px;
