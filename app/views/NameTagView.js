@@ -133,7 +133,9 @@ var NameTagView = Backbone.View.extend({
         action: '/upload',
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
         onComplete: function(id, fileName, responseJSON) {
-          that.eventModel.set({eventLogo: 'http://' + window.location.host + responseJSON.url});
+          if (responseJSON.success) {
+            that.eventModel.set({eventLogo: 'http://' + window.location.host + responseJSON.url});
+          }
         }          
       });      
     });

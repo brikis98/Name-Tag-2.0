@@ -35,19 +35,27 @@ app.get('/images/:image', function(req, res) {
 });
 
 app.post('/upload', function(req, res) {
-  var fileName, data;
   if (req.xhr) {
     var fileName = cleanupRequestedPath(req.header('x-file-name'));
-    var writeStream = fs.createWriteStream(path.join(UPLOAD_DIR, fileName));
+    var fileData = '';
     req.on('data', function(data) { 
-      writeStream.write(data);
+      fileData += data;
     });
     req.on('end', function() {
-      writeStream.end();
-      uploadSuccess(res, fileName);
+      if (fileData.length > 10000) { 
+        uploadError(res, 'Max file size is 10KB.');        
+      } else {
+        fs.writeFile(path.join(UPLOAD_DIR, fileName), fileData, function(err) {
+          if (err) {
+            uploadError(res, err);
+          } else {
+            uploadSuccess(res, fileName);                              
+          }
+        });
+      }     
     });
   } else {
-    res.send({error: 'Your browser is not supported.'});
+    uploadError(res, 'Your browser is not supported.');
   }
 });
 
@@ -64,6 +72,10 @@ app.get('/shorten', function(req, res) {
 
 function cleanupRequestedPath(file) {
   return path.basename(unescape(file));
+}
+
+function uploadError(res, err) {
+  res.send({error: 'Upload error: ' + err});
 }
 
 function uploadSuccess(res, fileName) {
