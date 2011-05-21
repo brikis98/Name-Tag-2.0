@@ -36,6 +36,7 @@ app.get('/images/:image', function(req, res) {
 
 app.post('/upload', function(req, res) {
   if (req.xhr) {
+    req.setEncoding('binary');
     var fileName = cleanupRequestedPath(req.header('x-file-name'));
     var fileData = '';
     req.on('data', function(data) { 
