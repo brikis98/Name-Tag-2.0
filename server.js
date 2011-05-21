@@ -30,14 +30,14 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/images/:image', function(req, res) {
+app.get('/uploaded/:image', function(req, res) {
   res.sendfile(path.join(UPLOAD_DIR, cleanupRequestedPath(req.params.image)));
 });
 
 app.post('/upload', function(req, res) {
   if (req.xhr) {
     req.setEncoding('binary');
-    var fileName = cleanupRequestedPath(req.header('x-file-name'));
+    var fileName = cleanupRequestedPath(req.query.id + '-' + req.query.qqfile);
     var fileData = '';
     req.on('data', function(data) { 
       fileData += data;
@@ -81,7 +81,7 @@ function uploadError(res, err) {
 }
 
 function uploadSuccess(res, fileName) {
-  res.send({success: true, url: '/images/' + fileName});
+  res.send({success: true, url: '/uploaded/' + fileName});
 }
 
 app.listen(3000);

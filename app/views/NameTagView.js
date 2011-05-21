@@ -132,6 +132,7 @@ var NameTagView = Backbone.View.extend({
         element: $(that.uploadContainer).get(0),
         action: '/upload',
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+        params: {id: that.profileModel.get('id')},
         onComplete: function(id, fileName, responseJSON) {
           if (responseJSON.success) {
             that.eventModel.set({eventLogo: 'http://' + window.location.host + responseJSON.url});
