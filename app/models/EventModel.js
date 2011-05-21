@@ -17,7 +17,6 @@ var EventModel = Backbone.Model.extend({
   
   getUrl: function(escaped) {
     var that = this;
-    console.log('attrs = ' + JSON.stringify(this.attributes));
     return _.map(this.attributes, function(value, key) { return that.encodeValue(value, escaped); }).join('/');
   },
   

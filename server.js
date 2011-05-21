@@ -45,7 +45,7 @@ app.post('/upload', function(req, res) {
       if (fileData.length > 10000) { 
         uploadError(res, 'Max file size is 10KB.');        
       } else {
-        fs.writeFile(path.join(UPLOAD_DIR, fileName), fileData, function(err) {
+        fs.writeFile(path.join(UPLOAD_DIR, fileName), fileData, 'binary', function(err) {
           if (err) {
             uploadError(res, err);
           } else {
