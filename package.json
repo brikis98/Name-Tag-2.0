@@ -14,7 +14,8 @@
   "dependencies": {
     "express": "*",
     "dust": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "restler": "*"
   },
   "devDependencies": {}
 }
