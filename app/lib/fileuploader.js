@@ -622,8 +622,7 @@ qq.extend(qq.FileUploader.prototype, {
         }         
     },
     _addToList: function(id, fileName){
-        return; // jbrikman
-        var item = qq.toElement(this._options.fileTemplate);                
+        var item = qq.toElement(this._options.fileTemplate); 
         item.qqFileId = id;
 
         var fileElement = this._find(item, 'file');        
