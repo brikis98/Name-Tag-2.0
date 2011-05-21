@@ -1,6 +1,6 @@
 $(function() {
   var profileModel = new ProfileModel();
-  var eventModel = new EventModel();
+  var eventModel = new EventModel({profileModel: profileModel});
   var view = new NameTagView({el: $('#main'), profileModel: profileModel, eventModel: eventModel});
   var controller = new NameTagController({profileModel: profileModel, eventModel: eventModel, view: view});
   Backbone.history.start();

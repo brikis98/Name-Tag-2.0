@@ -1,6 +1,9 @@
 var EventModel = Backbone.Model.extend({
   initialize: function(options) {
     _.bindAll(this, 'url', 'getUrl', 'encodeValue', 'getRoutePattern', 'update', 'set', 'cleanupValue');
+    
+    this.profileModel = options.profileModel;
+    this.profileModel.eventModel = this;
   },
   
   defaults: { 

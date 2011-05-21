@@ -25,7 +25,7 @@ a {
   line-height: 18px; 
 }
 
-@mixin tag-container($outerBorderColor, $thickBorderColor, $innerBorderColor, $innerBgColor, $fontColor) {
+@mixin tag-container($outerBorderColor, $thickBorderColor, $innerBorderColor, $innerBgColor, $fontColor, $nameColor, $eventNameColor) {
   color: $fontColor;
 
   .tag-container {
@@ -79,6 +79,13 @@ a {
     }
   }  
   
+  #name {
+    color: $nameColor;
+    font-size: 28px;
+    font-weight: bold;
+    font-family:  'Century Gothic', 'Helvetica', Arial, sans-serif;
+  }    
+  
   #qr {
     float: right; 
     margin-top: -8px;
@@ -103,7 +110,8 @@ a {
       @include float-right;
       line-height: image-height('logo.png');
       font-size: 12px; 
-      color: $fontColor;
+      font-weight: bold;
+      color: $eventNameColor;
     }
     
     #event-logo {
@@ -123,12 +131,16 @@ a {
   }
   
   &.gray {
-    @include tag-container(#EDEDED, #EDEDED, #CCC, #FFF, $normalFontColor);
+    @include tag-container(#EDEDED, #EDEDED, #CCC, #FFF, $normalFontColor, $linkColor, $normalFontColor);
   }
   
   &.white {
-    @include tag-container(#000, #FFF, #FFF, #FFF, #000);
+    @include tag-container(#888, #FFF, #888, #FFF, #444, $linkColor, #444);
   }    
+  
+  &.red {
+    @include tag-container(#AA2222, #AA2222, #660000, #FFF, #444, #000, #FFF);
+  }
 }
 
 .back-container {
@@ -162,14 +174,7 @@ a {
     @include float-left;
     width: $tagWidth - 120px;
   }
-  
-  #name {
-    color: $linkColor;
-    font-size: 28px;
-    font-weight: bold;
-    font-family:  'Century Gothic', 'Helvetica', Arial, sans-serif;
-  }  
-  
+    
   #headline {
     font-size: 13px;
     font-weight: bold;
@@ -319,7 +324,7 @@ a {
     .option {
       font-size: 12px;
       margin: 10px 0;
-      clear: both;
+      @include clearfix;
     }
     
     input[type=text] {
@@ -496,7 +501,6 @@ a {
 
 #upload, #upload-label {
   float: left;
-  margin-bottom: 10px;
 }
 
 .qq-upload-list {
