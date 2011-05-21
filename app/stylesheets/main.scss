@@ -1,6 +1,7 @@
 @import "compass/reset";
 @import "compass/utilities";
 @import "compass/css3";
+@import "_fileuploader";
 
 $linkColor: #006699;
 $borderRadius: 5px;
@@ -316,15 +317,13 @@ a {
     }
     
     .option {
+      font-size: 12px;
       margin: 10px 0;
+      clear: both;
     }
     
     input[type=text] {
       width: 220px;
-    }
-    
-    .radio {
-      font-size: 14px;
     }
     
     .radio-label {
@@ -493,4 +492,8 @@ a {
 #in-bug {
   vertical-align: middle;
   margin-top: -5px;
+}
+
+#upload, #upload-label {
+  float: left;
 }

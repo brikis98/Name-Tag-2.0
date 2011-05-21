@@ -1,13 +1,14 @@
 var NameTagView = Backbone.View.extend({
   initialize: function(options) {
-    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay', 'renderWithCallback', 'print', 'statusClicked', 'statusBlur', 'getCustomizeContext');
+    _.bindAll(this, 'render', 'parse', 'toggleLogout', 'eventOptionsChanged', 'getFullContext', 'renderCustomize', 'renderShow', 'done', 'getDoneOverlay', 'renderWithCallback', 'print', 'statusClicked', 'statusBlur', 'getCustomizeContext', 'updateCustomize');
     
     this.logoutContainer = '#logout-container';        
     this.loginContainer = '#login-container';
     this.badgeContainer = '#badge';
     this.doneContainer = '#done-contents';
     this.optionsForm = '#options-form';
-    this.statusContainer = '#status-text';
+    this.statusContainer = '#status-text';    
+    this.uploadContainer = '#upload';
     
     this.profileModel = options.profileModel;
     this.eventModel = options.eventModel;    
@@ -111,13 +112,7 @@ var NameTagView = Backbone.View.extend({
   },
   
   shortenUrl: function(url, callback) {
-    jsonlib.fetch({
-      url: 'https://www.googleapis.com/urlshortener/v1/url', 
-      header: 'Content-Type: application/json', 
-      data: JSON.stringify({longUrl: url})
-    }, function(response) {
-      callback(JSON.parse(response.content).id);
-    });
+    $.get('/shorten', {url: url}, callback);
   },
   
   getFullContext: function() {
@@ -129,18 +124,35 @@ var NameTagView = Backbone.View.extend({
   },
   
   renderCustomize: function() {
-    this.render('customize', this.getCustomizeContext());
+    this.eventModel.unbind('change');
+    this.eventModel.bind('change', this.updateCustomize);
+    var that = this;
+    this.render('customize', this.getCustomizeContext(), this.el, function() {
+      that.uploader = that.uploader || new qq.FileUploader({
+        element: $(that.uploadContainer).get(0),
+        action: '/upload',
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+        onComplete: function(id, fileName, responseJSON) {
+          that.eventModel.set({eventLogo: 'http://' + window.location.host + responseJSON.url});
+        }          
+      });      
+    });
   },
   
   renderShow: function() {
+    this.eventModel.unbind('change');
     this.render('badge', this.getFullContext());
   },
   
   eventOptionsChanged: function(event) {
     var values = $(this.optionsForm).serializeObject();
     this.eventModel.set(values);
+  },
+  
+  updateCustomize: function() {
     this.controller.saveLocation('#customize/' + this.eventModel.url());
-    this.render('badge', this.getCustomizeContext(), this.badgeContainer);
+    $(this.optionsForm).populate(this.eventModel.attributes);
+    this.render('badge', this.getCustomizeContext(), this.badgeContainer);    
   },
   
   parse: function(container) {
@@ -164,10 +176,13 @@ var NameTagView = Backbone.View.extend({
     });    
   },
   
-  render: function(template, context, container) {
+  render: function(template, context, container, callback) {
     container = container || this.el;
     this.renderWithCallback(template, context, function(out) {
       $(container).html(out);
+      if (callback) {
+        callback();
+      }
     });
   }
 });

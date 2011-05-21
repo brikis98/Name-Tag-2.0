@@ -3,6 +3,8 @@ javascripts:
     - app/lib/jquery-1.6.min.js
     - app/lib/jquery.tools.min.js
     - app/lib/jquery.ba-serializeobject.min.js
+    - app/lib/jquery.populate.pack.js
+    - app/lib/fileuploader.js
     - app/lib/dust-core-0.3.0.min.js
     - app/lib/underscore-min.js
     - app/lib/backbone-min.js
