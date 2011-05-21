@@ -60,6 +60,7 @@ app.post('/upload', function(req, res) {
 });
 
 app.get('/shorten', function(req, res) {
+  // TODO: get goo.gl API key so ou don't get throttled too quickly
   rest.post('https://www.googleapis.com/urlshortener/v1/url', {
     headers: {'Content-Type': 'application/json'}, 
     data: JSON.stringify({longUrl: unescape(req.query.url)})
