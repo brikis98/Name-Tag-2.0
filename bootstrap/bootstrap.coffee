@@ -11,7 +11,6 @@ $ ->
   $.getScript 'http://platform.linkedin.com/in.js?async=true', ->
     IN.init
       onLoad: 'onLinkedInLoad'
-      #api_key: 'OJcd6q1udIndF9vAJZ073iRENrrPz9FTrGQ0PSsl1eJyO4wASCSi7DDiFMOUd1Rz'
-      api_key: 'ZUZeWwJRSDulsA9nTSQuAL_ediXMebLTSgQ3YeyPamTdaFO8xe_8MYMdSQtDJ_LY'
+      api_key: 'OJcd6q1udIndF9vAJZ073iRENrrPz9FTrGQ0PSsl1eJyO4wASCSi7DDiFMOUd1Rz'
       authorize: true
 
