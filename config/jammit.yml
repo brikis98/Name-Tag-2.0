@@ -1,0 +1,20 @@
+compress_assets: off
+gzip_assets: off
+
+javascripts:
+  assets:
+    - dependencies/jquery-1.6.1.min.js
+    - dependencies/underscore.js
+    - dependencies/backbone-min.js
+    - dependencies/jquery.tools.min.js
+    - dependencies/jquery.ba-serializeobject.min.js
+    - dependencies/jquery.populate.pack.js    
+    - dependencies/fileuploader.js
+    - dependencies/dust-core-0.3.0.min.js
+    - compiled/bootstrap/namespace.js
+    - compiled/lib/*.js    
+    - compiled/models/*.js
+    - compiled/controllers/*.js
+    - compiled/views/*.js
+    - compiled/templates/*.js            
+    - compiled/bootstrap/bootstrap.js
