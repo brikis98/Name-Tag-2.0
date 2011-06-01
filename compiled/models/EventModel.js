@@ -42,7 +42,7 @@
         return;
       }
       newValues = {};
-      for (i = 0, _ref = values.length; 0 <= _ref ? i <= _ref : i >= _ref; 0 <= _ref ? i++ : i--) {
+      for (i = 0, _ref = values.length; 0 <= _ref ? i < _ref : i > _ref; 0 <= _ref ? i++ : i--) {
         newValues[keys[i]] = values[i];
       }
       return this.set(newValues);

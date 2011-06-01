@@ -30,7 +30,7 @@ NameTag.EventModel = Backbone.Model.extend
     return if values.length != keys.length
     
     newValues = {}
-    newValues[keys[i]] = values[i] for i in [0..values.length]
+    newValues[keys[i]] = values[i] for i in [0...values.length]
 
     @set newValues
   

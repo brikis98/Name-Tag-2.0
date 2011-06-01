@@ -62,7 +62,7 @@ NameTag.NameTagView = Backbone.View.extend
         start = 0 if start < 0
         end = list.length if end > list.length
 
-        chunk.render bodies.block, context.rebase(list[i]) for i in [start..end]
+        chunk.render bodies.block, context.rebase(list[i]) for i in [start...end]
         chunk
 
       equals: (chunk, context, bodies, params) ->

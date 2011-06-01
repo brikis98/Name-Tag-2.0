@@ -69,7 +69,7 @@
           if (end > list.length) {
             end = list.length;
           }
-          for (i = start; start <= end ? i <= end : i >= end; start <= end ? i++ : i--) {
+          for (i = start; start <= end ? i < end : i > end; start <= end ? i++ : i--) {
             chunk.render(bodies.block, context.rebase(list[i]));
           }
           return chunk;
